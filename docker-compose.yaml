@@ -1,6 +1,6 @@
 services:
   n8n:
-    build: .   # <-- This is the key change
+    build: .
     environment:
       - 'SERVICE_FQDN_N8N_5678:${SERVICE_FQDN_N8N}'
       - 'N8N_EDITOR_BASE_URL=https://n8n.${SERVICE_FQDN_N8N}'
@@ -9,7 +9,7 @@ services:
       - 'GENERIC_TIMEZONE=Europe/Berlin'
       - 'TZ=${TZ:-Europe/Berlin}'
     volumes:
-      - 'n8n-data:/home/node/.n8n' # <-- This line matches your old config and saves your data
+      - u4s8g48ws0kowo4oscwvkw_n8n-data:/home/node/.n8n # <-- THIS IS THE CRITICAL CHANGE
     healthcheck:
       test:
         - CMD-SHELL
@@ -17,3 +17,9 @@ services:
       interval: 5s
       timeout: 20s
       retries: 10
+
+# This tells Docker "don't create a new volume,
+# use the existing one with this exact name"
+volumes:
+  u4s8g48ws0kowo4oscwvkw_n8n-data:
+    external: true
