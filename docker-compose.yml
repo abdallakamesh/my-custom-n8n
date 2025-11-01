@@ -8,8 +8,6 @@ services:
       - 'N8N_HOST=${SERVICE_URL_N8N}'
       - 'GENERIC_TIMEZONE=Europe/Berlin'
       - 'TZ=${TZ:-Europe/Berlin}'
-    volumes:
-      - u4s8g48ws0kowo4oscwvkw_n8n-data:/home/node/.n8n # <-- THIS IS THE CRITICAL CHANGE
     healthcheck:
       test:
         - CMD-SHELL
@@ -17,9 +15,3 @@ services:
       interval: 5s
       timeout: 20s
       retries: 10
-
-# This tells Docker "don't create a new volume,
-# use the existing one with this exact name"
-volumes:
-  u4s8g48ws0kowo4oscwvkw_n8n-data:
-    external: true
