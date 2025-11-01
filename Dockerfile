@@ -8,8 +8,8 @@ USER root
 RUN apk update && \
     apk add --no-cache ffmpeg python3 py3-pip
 
-# Install the required python packages
-RUN pip3 install yt-dlp n8n-nodes-lang-python
+# Install the required python packages, breaking the environment lock
+RUN pip3 install --break-system-packages yt-dlp n8n-nodes-lang-python
 
 # Switch back to the non-privileged 'node' user
 USER node
