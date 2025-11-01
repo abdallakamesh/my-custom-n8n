@@ -4,10 +4,9 @@ FROM n8nio/n8n:latest
 # Switch to the root user to install packages
 USER root
 
-# Update package lists and install ffmpeg
-RUN apt-get update && \
-    apt-get install -y ffmpeg && \
-    rm -rf /var/lib/apt/lists/*
+# Update package lists and install ffmpeg using apk
+RUN apk update && \
+    apk add --no-cache ffmpeg
 
 # Install the required python packages
 RUN pip install yt-dlp n8n-nodes-lang-python
